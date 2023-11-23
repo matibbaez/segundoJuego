@@ -4,13 +4,13 @@ from config import *
 from sprite_sheet import * 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, groups) -> None:
+    def __init__(self, groups, sprite_sheet:SpriteSheet) -> None:
         super().__init__(groups)
-        self.animations = get_animations()
+        # self.animations = sprite_sheet.get_animations(scale=2)
+        self.animations = sprite_sheet.get_animations_dict(scale = 3)
         self.current_sprite = 0
-        self.image = self.animations[1][self.current_sprite]
+        self.image = self.animations["right"][self.current_sprite]
         self.rect = self.image.get_rect(topleft = (0, 0))
-        # self.image.fill(BLACK)
         self.speed = 5
         self.last_update = pygame.time.get_ticks()
         self.time_animation = 50
@@ -23,7 +23,7 @@ class Player(pygame.sprite.Sprite):
                 current_time = pygame.time.get_ticks()
                 if current_time - self.last_update >= self.time_animation:
                     self.current_sprite += 1
-                    self.image = self.animations[1][self.current_sprite]
+                    self.image = self.animations["right"][self.current_sprite]
                     if self.current_sprite == 3:
                         self.current_sprite = 0
                     self.last_update = current_time
@@ -33,7 +33,7 @@ class Player(pygame.sprite.Sprite):
                 current_time = pygame.time.get_ticks()
                 if current_time - self.last_update >= self.time_animation:
                     self.current_sprite += 1
-                    self.image = self.animations[2][self.current_sprite]
+                    self.image = self.animations["left"][self.current_sprite]
                     if self.current_sprite == 3:
                         self.current_sprite = 0
                     self.last_update = current_time
@@ -43,7 +43,7 @@ class Player(pygame.sprite.Sprite):
                 current_time = pygame.time.get_ticks()
                 if current_time - self.last_update >= self.time_animation:
                     self.current_sprite += 1
-                    self.image = self.animations[3][self.current_sprite]
+                    self.image = self.animations["front"][self.current_sprite]
                     if self.current_sprite == 3:
                         self.current_sprite = 0
                     self.last_update = current_time
@@ -53,7 +53,7 @@ class Player(pygame.sprite.Sprite):
                 current_time = pygame.time.get_ticks()
                 if current_time - self.last_update >= self.time_animation:
                     self.current_sprite += 1
-                    self.image = self.animations[4][self.current_sprite]
+                    self.image = self.animations["back"][self.current_sprite]
                     if self.current_sprite == 3:
                         self.current_sprite = 0
                     self.last_update = current_time
