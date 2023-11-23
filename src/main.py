@@ -12,7 +12,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption("Juego con clases")
-        pygame.display.set_icon(pygame.image.load("./src/assets/images/doux.png"))
+        # pygame.display.set_icon(pygame.image.load("./src/assets/images/doux.png"))
         
         # Agrego un grupo de sprites
         self.all_sprites = pygame.sprite.Group()
